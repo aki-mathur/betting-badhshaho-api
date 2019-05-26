@@ -16,10 +16,16 @@
 #
 default: &default
   adapter: postgresql
-  host: 127.0.0.1
-  username: postgres
-  password:
-  schema_search_path: public
+  encoding: unicode
+  host: <%= ENV["DATABASE_HOST"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  timeout: 5000
+  port: 5432
+  socket: /var/run/postgresql
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
@@ -79,7 +85,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: betting-badhshaho-api_production
-  username: betting-badhshaho-api
-  password: <%= ENV['BETTING-BADHSHAHO-API_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

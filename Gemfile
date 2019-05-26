@@ -48,3 +48,6 @@ gem "rolify"
 
 gem 'active_model_serializers', '~> 0.10.0'
 
+gem 'figaro'
+
+
