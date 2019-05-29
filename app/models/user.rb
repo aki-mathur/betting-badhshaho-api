@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   include DeviseTokenAuth::Concerns::User
 
   # Include default devise modules. Others available are:
