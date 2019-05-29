@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :update, :destroy]
+  before_action :set_match, only: [:show, :update, :destroy, :update_result]
 
   # GET /matches
   def index
@@ -15,8 +15,7 @@ class MatchesController < ApplicationController
 
   # POST /matches
   def create
-    @match = Match.new(match_params.merge!(created_by_id: 1, updated_by_id: 1))
-byebug
+    @match = Match.new(match_params.merge!(created_by_id: current_user, updated_by_id: current_user))
     if @match.save
       render json: @match, status: :created, location: @match
     else
@@ -38,6 +37,10 @@ byebug
     @match.destroy
   end
 
+  def update_result
+    @match.update_result(match_params[:winner_team_id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match
@@ -46,6 +49,6 @@ byebug
 
     # Only allow a trusted parameter "white list" through.
     def match_params
-      params.require(:match).permit(:name, :team1_id, :team2_id, :date, :venue)
+      params.require(:match).permit(:name, :team1_id, :team2_id, :date, :venue, :winner_team_id)
     end
 end

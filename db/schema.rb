@@ -21,11 +21,13 @@ ActiveRecord::Schema.define(version: 2019_05_25_102501) do
     t.bigint "match_id", null: false
     t.decimal "amount", precision: 9, scale: 2, null: false
     t.decimal "winning_amount", precision: 9, scale: 2
+    t.boolean "is_winner"
     t.bigint "created_by_id", null: false
     t.bigint "updated_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_bids_on_created_by_id"
+    t.index ["is_winner"], name: "index_bids_on_is_winner"
     t.index ["updated_by_id"], name: "index_bids_on_updated_by_id"
     t.index ["winning_amount"], name: "index_bids_on_winning_amount"
   end
