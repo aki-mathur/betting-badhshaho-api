@@ -1,3 +1,3 @@
 class TeamSerializer < ActiveModel::Serializer
-  attributes :id, :name, :captain
+  attributes :id, :name, :short_name, :captain
 end

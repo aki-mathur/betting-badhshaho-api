@@ -75,10 +75,19 @@ ActiveRecord::Schema.define(version: 2019_05_25_102501) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "confirm_success_url"
     t.string "unconfirmed_email"
+    t.string "provider"
+    t.string "uid", default: "", null: false
+    t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -86,6 +95,7 @@ ActiveRecord::Schema.define(version: 2019_05_25_102501) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid", unique: true
     t.index ["updated_by_id"], name: "index_users_on_updated_by_id"
   end
 
