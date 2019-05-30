@@ -11,8 +11,6 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
       t.string :name, length: 100 , null: false, index: true
       t.string :mobile, length: 10
       t.datetime :deleted_at
-      t.references :created_by, index: true, null: false
-      t.references :updated_by, index: true, null: false
 
       ## Recoverable
       t.string   :reset_password_token

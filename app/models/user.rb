@@ -8,5 +8,12 @@ class User < ApplicationRecord
   #        :recoverable, :rememberable, :validatable
   #
   has_many :bids
+  after_validation :ensure_uid
+
+  def ensure_uid
+    if self.uid.blank?
+        self.uid = self.email
+    end
+  end
 
 end
