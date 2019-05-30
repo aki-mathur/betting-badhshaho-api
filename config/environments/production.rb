@@ -55,6 +55,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "betting-badhshaho-api_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  #
+  # ActionMailer::Base.smtp_settings = {
+  #     :port           => ENV['MAILGUN_SMTP_PORT'],
+  #     :address        => ENV['MAILGUN_SMTP_SERVER'],
+  #     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+  #     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+  #     :domain         => 'betting-badshaho-api.herokuapp.com',
+  #     :authentication => :plain,
+  # }
+  # ActionMailer::Base.delivery_method = :smtp
+
+  config.action_mailer.default_url_options = { :host => 'betting-badshaho-api.herokuapp.com' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -82,4 +94,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  OmniAuth.config.full_host = "http://betting-badshaho-api.herokuapp.com"
+
 end
