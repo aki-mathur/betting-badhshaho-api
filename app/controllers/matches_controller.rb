@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :update, :destroy, :update_result]
+  before_action :set_match, only: [:show, :update, :destroy, :update_winner]
 
   # GET /matches
   def index
@@ -37,7 +37,8 @@ class MatchesController < ApplicationController
     @match.destroy
   end
 
-  def update_result
+  # PATCH /matches/1
+  def update_winner
     @match.update_result(match_params[:winner_team_id])
   end
 
